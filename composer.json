@@ -1,0 +1,21 @@
+{
+    "name": "muscobytes/proxyplant",
+    "type": "library",
+    "version": "1.0.0",
+    "autoload": {
+        "psr-4": {
+            "Muscobytes\\Proxyplant\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Stanislav Surskiy",
+            "email": "ssurskiy@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^8.0",
+        "spatie/data-transfer-object": "^3.7"
+    }
+}
