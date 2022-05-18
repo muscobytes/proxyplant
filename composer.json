@@ -2,6 +2,8 @@
     "name": "muscobytes/proxyplant",
     "type": "library",
     "version": "1.0.0",
+    "license": "MIT",
+    "keywords": ["proxy", "providers", "hidemy.name", "rsocks.net"],
     "autoload": {
         "psr-4": {
             "Muscobytes\\Proxyplant\\": "src/"
