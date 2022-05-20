@@ -7,5 +7,5 @@ use Muscobytes\Proxyplant\DTO\ProxyDTO;
 interface ProxyProviderInterface
 {
     public function load(): array;
-    public function getRandomProxy(): ProxyDTO;
+    public function getRandomProxy(array $list): ProxyDTO;
 }

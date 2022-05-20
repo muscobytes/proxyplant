@@ -22,6 +22,12 @@ class RsocksProvider implements ProxyProviderInterface
     }
 
 
+    /**
+     * load
+     *
+     * @return array
+     * @throws ProxyPlantException
+     */
     public function load(): array
     {
         $opts = [
@@ -48,6 +54,12 @@ class RsocksProvider implements ProxyProviderInterface
     }
 
 
+    /**
+     * detectType
+     *
+     * @param string $scheme
+     * @return mixed
+     */
     protected function detectType(string $scheme)
     {
         $map = [
@@ -61,10 +73,16 @@ class RsocksProvider implements ProxyProviderInterface
     }
 
 
-    public function getRandomProxy(): ProxyDTO
+    /**
+     * getRandomProxy
+     * 
+     * @return ProxyDTO
+     * @throws ProxyPlantException
+     * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
+     */
+    public function getRandomProxy(array $list): ProxyDTO
     {
-        $data = $this->load();
-        $package = $data['packages'][array_rand($data['packages'])]['ips'];
+        $package = $list['packages'][array_rand($list['packages'])]['ips'];
         $url = parse_url($package[array_rand($package)]);
         return new ProxyDTO(
             type: new ProxyType($this->detectType($url['scheme'])),
