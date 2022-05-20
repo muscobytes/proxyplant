@@ -1,15 +1,15 @@
 <?php
-
 namespace Muscobytes\Proxyplant;
 
 use Muscobytes\Proxyplant\Exceptions\ProxyPlantException;
 use Muscobytes\Proxyplant\Interfaces\ProxyProviderInterface;
+use Muscobytes\Proxyplant\Interfaces\ProxyplantInterface;
 use Muscobytes\Proxyplant\ProxyProviders\Configs\HidemynameConfig;
 use Muscobytes\Proxyplant\ProxyProviders\Configs\RsocksConfig;
 use Muscobytes\Proxyplant\ProxyProviders\HidemynameProvider;
 use Muscobytes\Proxyplant\ProxyProviders\RsocksProvider;
 
-class ProxyLoader
+class Proxyplant implements ProxyplantInterface
 {
     protected array $providers = [];
 
@@ -57,9 +57,9 @@ class ProxyLoader
 
 
     /**
-     * @return mixed
+     * @return ProxyProviderInterface
      */
-    public function getRandomProvider()
+    public function getRandomProvider(): ProxyProviderInterface
     {
         return $this->providers[array_rand($this->providers)];
     }
