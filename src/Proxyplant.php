@@ -1,6 +1,7 @@
 <?php
 namespace Muscobytes\Proxyplant;
 
+use Muscobytes\Proxyplant\DTO\ProxyDTO;
 use Muscobytes\Proxyplant\Exceptions\ProxyPlantException;
 use Muscobytes\Proxyplant\Interfaces\ProxyProviderInterface;
 use Muscobytes\Proxyplant\Interfaces\ProxyplantInterface;
@@ -62,5 +63,17 @@ class Proxyplant implements ProxyplantInterface
     public function getRandomProvider(): ProxyProviderInterface
     {
         return $this->providers[array_rand($this->providers)];
+    }
+
+
+    /**
+     * @param string $providerName
+     * @return ProxyDTO
+     * @throws ProxyPlantException
+     */
+    public function getRandomProxy(string $providerName = ''): ProxyDTO
+    {
+        $provider = empty($providerName) ? $this->getRandomProvider() : $this->getProvider($providerName);
+        return $provider->getRandomProxy($provider->load());
     }
 }

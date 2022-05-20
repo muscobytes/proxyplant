@@ -2,6 +2,8 @@
 
 namespace Muscobytes\Proxyplant\Interfaces;
 
+use Muscobytes\Proxyplant\DTO\ProxyDTO;
+
 interface ProxyplantInterface
 {
     public function createProxyProvider(string $providerName, array $providerConfig): ProxyProviderInterface;
@@ -9,4 +11,6 @@ interface ProxyplantInterface
     public function getProvider(string $providerName): ProxyProviderInterface;
 
     public function getRandomProvider(): ProxyProviderInterface;
+
+    public function getRandomProxy(): ProxyDTO;
 }
