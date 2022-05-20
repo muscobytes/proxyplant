@@ -1,15 +1,16 @@
 <?php
-
 namespace Muscobytes\Proxyplant;
 
+use Muscobytes\Proxyplant\DTO\ProxyDTO;
 use Muscobytes\Proxyplant\Exceptions\ProxyPlantException;
 use Muscobytes\Proxyplant\Interfaces\ProxyProviderInterface;
+use Muscobytes\Proxyplant\Interfaces\ProxyplantInterface;
 use Muscobytes\Proxyplant\ProxyProviders\Configs\HidemynameConfig;
 use Muscobytes\Proxyplant\ProxyProviders\Configs\RsocksConfig;
 use Muscobytes\Proxyplant\ProxyProviders\HidemynameProvider;
 use Muscobytes\Proxyplant\ProxyProviders\RsocksProvider;
 
-class ProxyLoader
+class Proxyplant implements ProxyplantInterface
 {
     protected array $providers = [];
 
@@ -57,10 +58,22 @@ class ProxyLoader
 
 
     /**
-     * @return mixed
+     * @return ProxyProviderInterface
      */
-    public function getRandomProvider()
+    public function getRandomProvider(): ProxyProviderInterface
     {
         return $this->providers[array_rand($this->providers)];
+    }
+
+
+    /**
+     * @param string $providerName
+     * @return ProxyDTO
+     * @throws ProxyPlantException
+     */
+    public function getRandomProxy(string $providerName = ''): ProxyDTO
+    {
+        $provider = empty($providerName) ? $this->getRandomProvider() : $this->getProvider($providerName);
+        return $provider->getRandomProxy($provider->load());
     }
 }

@@ -6,10 +6,6 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class HidemynameConfig extends DataTransferObject
 {
-    public string $cache_key = 'proxy_provider_hidemyname';
-
-    public int $cache_ttl = 3600;
-
     public string $url = 'https://hidemy.name/api/proxylist.txt';
 
     public string $code;

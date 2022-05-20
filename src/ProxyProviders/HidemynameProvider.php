@@ -75,9 +75,8 @@ final class HidemynameProvider implements ProxyProviderInterface
      * @return ProxyDTO
      * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
      */
-    public function getRandomProxy(): ProxyDTO
+    public function getRandomProxy(array $list): ProxyDTO
     {
-        $list = $this->load();
         $proxy = $list[array_rand($list)];
         return new ProxyDTO(
             host: $proxy->ip,
